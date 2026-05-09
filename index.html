@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycling Dreams</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0b3d30 0%, #1b5e3f 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .cartel {
+            text-align: center;
+            background: white;
+            padding: 50px 60px;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            animation: aparecer 1s ease-out;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            margin: 20px 0;
+        }
+        .icono {
+            font-size: 4rem;
+            animation: girar 3s infinite;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        @keyframes aparecer {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes girar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="cartel">
+        <div>
+            <span class="icono">♻️</span>
+            <span class="icono">🌱</span>
+            <span class="icono">♻️</span>
+        </div>
+        <h1>RECYCLING DREAMS</h1>
+        <h2 style="color: #555;">🌍 Página en construcción 🌍</h2>
+        <div>
+            <span class="icono">🔄</span>
+            <span class="icono">✨</span>
+            <span class="icono">🔄</span>
+        </div>
+        <p style="margin-top: 30px; color: #888;">Pronto tendremos nuestra web disponible. ¡Vuelve pronto!</p>
+    </div>
+</body>
+</html>
