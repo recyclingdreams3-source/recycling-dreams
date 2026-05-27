@@ -3,62 +3,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recycling Dreams</title>
+    <title>Recycling Dreams - Tienda Oficial</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #0b3d30 0%, #1b5e3f 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            box-sizing: border-box;
         }
-        .cartel {
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* NOTIFICACIÓN BONITA */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2e7d32;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            font-weight: bold;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .navbar {
+            background: #1a3d2f;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #4caf50;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #4caf50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #1a3d2f, #2e7d32);
+            border-radius: 20px;
+            padding: 50px;
             text-align: center;
-            background: white;
-            padding: 50px 60px;
-            border-radius: 30px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            color: white;
+            margin-bottom: 40px;
             animation: aparecer 1s ease-out;
         }
-        h1 {
-            font-size: 2.5rem;
-            color: #2e7d32;
-            margin: 20px 0;
-        }
-        .icono {
-            font-size: 4rem;
-            animation: girar 3s infinite;
-            display: inline-block;
-            margin: 0 10px;
-        }
+
         @keyframes aparecer {
-            0% { opacity: 0; transform: translateY(-30px); }
+            0% { opacity: 0; transform: translateY(-20px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        @keyframes girar {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .search-bar {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .producto {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .producto:hover {
+            transform: translateY(-5px);
+        }
+
+        .producto-imagen {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .producto-info {
+            padding: 20px;
+        }
+
+        .producto-nombre {
+            font-size: 1.3rem;
+            color: #1a3d2f;
+            margin-bottom: 10px;
+        }
+
+        .producto-precio {
+            font-size: 1.5rem;
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .cantidad-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cantidad-selector input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .btn-agregar {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .carrito, .cuenta {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+
+        .carrito h2, .cuenta h2 {
+            color: #1a3d2f;
+            margin-bottom: 20px;
+            border-left: 5px solid #4caf50;
+            padding-left: 15px;
+        }
+
+        .carrito-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .carrito-item-cantidad {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .carrito-item-cantidad button {
+            background: #ddd;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .btn-eliminar {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .carrito-total {
+            text-align: right;
+            padding: 15px 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .form-pago {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+        }
+
+        .form-pago input, .form-pago select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .btn-pagar {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .sesion {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .sesion input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .btn-sesion {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .usuario-info {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background: #1a3d2f;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .oculto {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="cartel">
-        <div>
-            <span class="icono">♻️</span>
-            <span class="icono">🌱</span>
-            <span class="icono">♻️</span>
+
+    <div class="navbar">
+        <div class="nav-container">
+            <div class="logo">Recycling <span>Dreams</span></div>
+            <div class="nav-links">
+                <a onclick="mostrarSeccion('inicio')">Inicio</a>
+                <a onclick="mostrarSeccion('productos')">Productos</a>
+                <a onclick="mostrarSeccion('carrito')">Carrito</a>
+                <a onclick="mostrarSeccion('cuenta')">Mi Cuenta</a>
+            </div>
         </div>
-        <h1>RECYCLING DREAMS</h1>
-        <h2 style="color: #555;">🌍 Página en construcción 🌍</h2>
-        <div>
-            <span class="icono">🔄</span>
-            <span class="icono">✨</span>
-            <span class="icono">🔄</span>
-        </div>
-        <p style="margin-top: 30px; color: #888;">Pronto tendremos nuestra web disponible. ¡Vuelve pronto!</p>
     </div>
+
+    <div class="container">
+        <section id="seccion-inicio" class="seccion">
+            <div class="banner">
+                <h1>♻️ Recycling Dreams ♻️</h1>
+                <p>Productos ecológicos hechos con amor por el planeta</p>
+                <p style="margin-top: 15px;">🌱 Tu compra ayuda al medio ambiente 🌱</p>
+            </div>
+        </section>
+
+        <section id="seccion-productos" class="seccion oculto">
+            <div class="search-bar">
+                <input type="text" id="buscador" placeholder="🔍 Buscar productos...">
+            </div>
+            <div class="productos" id="productos-container"></div>
+        </section>
+
+        <section id="seccion-carrito" class="seccion oculto">
+            <div class="carrito">
+                <h2>🛒 Mi Carrito</h2>
+                <div id="carrito-contenido"></div>
+                <div id="carrito-total" class="carrito-total"></div>
+                <div id="metodo-pago" class="form-pago oculto">
+                    <h3>💳 Método de pago</h3>
+                    <select id="tipo-pago">
+                        <option value="tarjeta">Tarjeta de crédito/débito</option>
+                        <option value="transferencia">Transferencia bancaria</option>
+                        <option value="paypal">Paypal</option>
+                    </select>
+                    <div id="datos-tarjeta">
+                        <input type="text" id="numero-tarjeta" placeholder="Número de tarjeta (16 dígitos)">
+                        <input type="text" id="fecha" placeholder="MM/AA">
+                        <input type="text" id="cvv" placeholder="CVV">
+                    </div>
+                    <div id="datos-transferencia" class="oculto">
+                        <p>Banco: EcoBank</p>
+                        <p>Cuenta: 1234-5678-9012-3456</p>
+                        <p>CLABE: 012345678901234567</p>
+                    </div>
+                    <div id="datos-paypal" class="oculto">
+                        <input type="email" id="paypal-correo" placeholder="correo@ejemplo.com">
+                    </div>
+                    <button class="btn-pagar" onclick="finalizarCompra()">Finalizar Compra</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="seccion-cuenta" class="seccion oculto">
+            <div class="cuenta">
+                <h2>👤 Mi Cuenta</h2>
+                <div id="estado-sesion">
+                    <div class="sesion" id="form-login">
+                        <input type="text" id="login-email" placeholder="Correo electrónico">
+                        <input type="password" id="login-pass" placeholder="Contraseña">
+                        <button class="btn-sesion" onclick="iniciarSesion()">Iniciar Sesión</button>
+                        <button class="btn-sesion" onclick="mostrarRegistro()">Crear cuenta</button>
+                    </div>
+                    <div id="form-registro" class="oculto">
+                        <input type="text" id="reg-nombre" placeholder="Nombre completo">
+                        <input type="email" id="reg-email" placeholder="Correo electrónico">
+                        <input type="password" id="reg-pass" placeholder="Contraseña">
+                        <button class="btn-sesion" onclick="registrar()">Registrarme</button>
+                        <button class="btn-sesion" onclick="ocultarRegistro()">Volver</button>
+                    </div>
+                    <div id="usuario-login" class="usuario-info oculto">
+                        <p>✅ Bienvenido, <span id="usuario-nombre"></span></p>
+                        <button class="btn-sesion" onclick="cerrarSesion()">Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>♻️ Recycling Dreams - Cuidando el planeta, un producto a la vez ♻️</p>
+        <p>© 2024 - Proyecto Escolar</p>
+    </footer>
+
+    <script>
+        // NOTIFICACIÓN BONITA
+        function mostrarNotificacion(mensaje) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = mensaje;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 2000);
+        }
+
+        const productos = [
+            { id: 1, nombre: "Eco Creati", precio: 60, imagen: "eco-creati.jpg" },
+            { id: 2, nombre: "Recycled Glass", precio: 30, imagen: "recycled-glass.jpg" },
+            { id: 3, nombre: "Jellyfish of light", precio: 25, imagen: "jellyfishof-light.jpg" }
+        ];
+
+        let carrito = [];
+        let usuarioLogueado = false;
+        let nombreUsuario = "";
+
+        function mostrarSeccion(seccion) {
+            document.querySelectorAll('.seccion').forEach(s => s.classList.add('oculto'));
+            document.getElementById(`seccion-${seccion}`).classList.remove('oculto');
+            if (seccion === 'productos') mostrarProductos();
+            if (seccion === 'carrito') actualizarCarrito();
+        }
+
+        function guardarCarrito() { localStorage.setItem('carrito', JSON.stringify(carrito)); }
+        function cargarCarrito() { const g = localStorage.getItem('carrito'); if (g) carrito = JSON.parse(g); }
+
+        function agregarAlCarrito(id, cantidad) {
+            const p = productos.find(p => p.id === id);
+            if (!p || cantidad < 1) return;
+            const e = carrito.find(item => item.id === id);
+            if (e) e.cantidad += cantidad;
+            else carrito.push({ ...p, cantidad });
+            guardarCarrito();
+            actualizarCarrito();
+            mostrarNotificacion(`✅ ${cantidad} x ${p.nombre} agregado`);
+        }
+
+        function quitarDelCarrito(id) { carrito = carrito.filter(item => item.id !== id); guardarCarrito(); actualizarCarrito(); }
+        function cambiarCantidad(id, nc) { if (nc < 1) quitarDelCarrito(id); else { const i = carrito.find(item => item.id === id); if (i) i.cantidad = nc; guardarCarrito(); actualizarCarrito(); } }
+        function calcularTotal() { return carrito.reduce((t, i) => t + (i.precio * i.cantidad), 0); }
+
+        function actualizarCarrito() {
+            const c = document.getElementById('carrito-contenido');
+            const t = document.getElementById('carrito-total');
+            const m = document.getElementById('metodo-pago');
+            if (carrito.length === 0) { c.innerHTML = '<div style="text-align:center;padding:20px;">🛍️ Carrito vacío</div>'; t.innerHTML = ''; m.classList.add('oculto'); return; }
+            let html = '';
+            carrito.forEach(item => { html += `<div class="carrito-item"><div><strong>${item.nombre}</strong><br>$${item.precio}</div><div class="carrito-item-cantidad"><button onclick="cambiarCantidad(${item.id}, ${item.cantidad - 1})">-</button><span>${item.cantidad}</span><button onclick="cambiarCantidad(${item.id}, ${item.cantidad + 1})">+</button><button class="btn-eliminar" onclick="quitarDelCarrito(${item.id})">Eliminar</button></div></div>`; });
+            c.innerHTML = html;
+            t.innerHTML = `Total: $${calcularTotal()}`;
+            m.classList.remove('oculto');
+        }
+
+        function finalizarCompra() {
+            if (!usuarioLogueado) { mostrarNotificacion("⚠️ Inicia sesión para comprar"); mostrarSeccion('cuenta'); return; }
+            if (carrito.length === 0) { mostrarNotificacion("⚠️ Carrito vacío"); return; }
+            mostrarNotificacion(`🛑 Compra simulada - Gracias ${nombreUsuario} por tu compra de $${calcularTotal()}`);
+            carrito = []; guardarCarrito(); actualizarCarrito(); mostrarSeccion('inicio');
+        }
+
+        function iniciarSesion() {
+            const e = document.getElementById('login-email').value, p = document.getElementById('login-pass').value;
+            if (e && p) { usuarioLogueado = true; nombreUsuario = e.split('@')[0]; document.getElementById('usuario-nombre').innerText = nombreUsuario; document.getElementById('form-login').classList.add('oculto'); document.getElementById('usuario-login').classList.remove('oculto'); mostrarNotificacion(`✅ Bienvenido ${nombreUsuario}`); }
+            else mostrarNotificacion("⚠️ Completa los campos");
+        }
+
+        function registrar() {
+            const n = document.getElementById('reg-nombre').value, e = document.getElementById('reg-email').value, p = document.getElementById('reg-pass').value;
+            if (n && e && p) { usuarioLogueado = true; nombreUsuario = n; document.getElementById('usuario-nombre').innerText = nombreUsuario; document.getElementById('form-registro').classList.add('oculto'); document.getElementById('form-login').classList.add('oculto'); document.getElementById('usuario-login').classList.remove('oculto'); mostrarNotificacion(`✅ Cuenta creada. Bienvenido ${nombreUsuario}`); }
+            else mostrarNotificacion("⚠️ Completa los campos");
+        }
+
+        function cerrarSesion() { usuarioLogueado = false; nombreUsuario = ""; document.getElementById('form-login').classList.remove('oculto'); document.getElementById('usuario-login').classList.add('oculto'); document.getElementById('form-registro').classList.add('oculto'); mostrarNotificacion("🔓 Sesión cerrada"); }
+        function mostrarRegistro() { document.getElementById('form-login').classList.add('oculto'); document.getElementById('form-registro').classList.remove('oculto'); }
+        function ocultarRegistro() { document.getElementById('form-registro').classList.add('oculto'); document.getElementById('form-login').classList.remove('oculto'); }
+
+        function mostrarProductos(filtro = '') {
+            const container = document.getElementById('productos-container');
+            const f = productos.filter(p => p.nombre.toLowerCase().includes(filtro.toLowerCase()));
+            if (f.length === 0) { container.innerHTML = '<p style="text-align:center">No hay productos</p>'; return; }
+            let html = '';
+            f.forEach(p => { html += `<div class="producto"><img class="producto-imagen" src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/300x250?text=Imagen+no+disponible'"><div class="producto-info"><div class="producto-nombre">${p.nombre}</div><div class="producto-precio">$${p.precio}</div><div class="cantidad-selector"><label>Cantidad:</label><input type="number" id="cant-${p.id}" value="1" min="1"></div><button class="btn-agregar" onclick="agregarAlCarrito(${p.id}, parseInt(document.getElementById('cant-${p.id}').value))">🛒 Agregar</button></div></div>`; });
+            container.innerHTML = html;
+        }
+
+        document.getElementById('buscador').addEventListener('input', (e) => mostrarProductos(e.target.value));
+        document.addEventListener('DOMContentLoaded', () => { const tp = document.getElementById('tipo-pago'); if (tp) { tp.addEventListener('change', (e) => { document.getElementById('datos-tarjeta').classList.add('oculto'); document.getElementById('datos-transferencia').classList.add('oculto'); document.getElementById('datos-paypal').classList.add('oculto'); if (e.target.value === 'tarjeta') document.getElementById('datos-tarjeta').classList.remove('oculto'); if (e.target.value === 'transferencia') document.getElementById('datos-transferencia').classList.remove('oculto'); if (e.target.value === 'paypal') document.getElementById('datos-paypal').classList.remove('oculto'); }); } });
+        cargarCarrito(); mostrarSeccion('inicio');
+    </script>
 </body>
 </html>
