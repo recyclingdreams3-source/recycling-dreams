@@ -555,7 +555,3 @@
             mostrarNotificacion(`🛑 Compra simulada - Gracias ${nombreUsuario} por tu compra de $${calcularTotal()} MXN`);
             carrito = []; guardarCarrito(); actualizarCarrito(); mostrarSeccion('inicio');
         }
-
-        function iniciarSesion() {
-            const e = document.getElementById('login-email').value, p = document.getElementById('login-pass').value;
-            if (e && p) { usuarioLogueado = t
