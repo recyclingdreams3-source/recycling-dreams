@@ -16,7 +16,6 @@
             background: #f5f5f5;
         }
 
-        /* NOTIFICACIÓN BONITA */
         .toast {
             position: fixed;
             top: 20px;
@@ -328,7 +327,7 @@
     <div class="container">
         <section id="seccion-inicio" class="seccion">
             <div class="banner">
-                <h1>♻️ Recycling Dreams ♻️</h1>
+                <h1>♻️ Recycling Dreams</h1>
                 <p>Productos ecológicos hechos con amor por el planeta</p>
                 <p style="margin-top: 15px;">🌱 Tu compra ayuda al medio ambiente 🌱</p>
             </div>
@@ -403,7 +402,6 @@
     </footer>
 
     <script>
-        // NOTIFICACIÓN BONITA
         function mostrarNotificacion(mensaje) {
             const toast = document.createElement('div');
             toast.className = 'toast';
@@ -415,9 +413,9 @@
         }
 
         const productos = [
-            { id: 1, nombre: "Eco Creati", precio: 60, imagen: "eco-creati.jpg" },
-            { id: 2, nombre: "Recycled Glass", precio: 30, imagen: "recycled-glass.jpg" },
-            { id: 3, nombre: "Jellyfish of light", precio: 25, imagen: "jellyfishof-light.jpg" }
+            { id: 1, nombre: "Eco Creati", precio: "$60 MXN", imagen: "eco-creati.jpg" },
+            { id: 2, nombre: "Recycled Glass", precio: "$30 MXN", imagen: "recycled-glass.jpg" },
+            { id: 3, nombre: "Jellyfish of light", precio: "$25 MXN", imagen: "jellyfishof-light.jpg" }
         ];
 
         let carrito = [];
@@ -447,7 +445,14 @@
 
         function quitarDelCarrito(id) { carrito = carrito.filter(item => item.id !== id); guardarCarrito(); actualizarCarrito(); }
         function cambiarCantidad(id, nc) { if (nc < 1) quitarDelCarrito(id); else { const i = carrito.find(item => item.id === id); if (i) i.cantidad = nc; guardarCarrito(); actualizarCarrito(); } }
-        function calcularTotal() { return carrito.reduce((t, i) => t + (i.precio * i.cantidad), 0); }
+        function calcularTotal() { 
+            let total = 0;
+            carrito.forEach(item => {
+                let precioNum = parseFloat(item.precio);
+                total += precioNum * item.cantidad;
+            });
+            return total;
+        }
 
         function actualizarCarrito() {
             const c = document.getElementById('carrito-contenido');
@@ -455,16 +460,18 @@
             const m = document.getElementById('metodo-pago');
             if (carrito.length === 0) { c.innerHTML = '<div style="text-align:center;padding:20px;">🛍️ Carrito vacío</div>'; t.innerHTML = ''; m.classList.add('oculto'); return; }
             let html = '';
-            carrito.forEach(item => { html += `<div class="carrito-item"><div><strong>${item.nombre}</strong><br>$${item.precio}</div><div class="carrito-item-cantidad"><button onclick="cambiarCantidad(${item.id}, ${item.cantidad - 1})">-</button><span>${item.cantidad}</span><button onclick="cambiarCantidad(${item.id}, ${item.cantidad + 1})">+</button><button class="btn-eliminar" onclick="quitarDelCarrito(${item.id})">Eliminar</button></div></div>`; });
+            carrito.forEach(item => { 
+                html += `<div class="carrito-item"><div><strong>${item.nombre}</strong><br>${item.precio}</div><div class="carrito-item-cantidad"><button onclick="cambiarCantidad(${item.id}, ${item.cantidad - 1})">-</button><span>${item.cantidad}</span><button onclick="cambiarCantidad(${item.id}, ${item.cantidad + 1})">+</button><button class="btn-eliminar" onclick="quitarDelCarrito(${item.id})">Eliminar</button></div></div>`;
+            });
             c.innerHTML = html;
-            t.innerHTML = `Total: $${calcularTotal()}`;
+            t.innerHTML = `Total: $${calcularTotal()} MXN`;
             m.classList.remove('oculto');
         }
 
         function finalizarCompra() {
             if (!usuarioLogueado) { mostrarNotificacion("⚠️ Inicia sesión para comprar"); mostrarSeccion('cuenta'); return; }
             if (carrito.length === 0) { mostrarNotificacion("⚠️ Carrito vacío"); return; }
-            mostrarNotificacion(`🛑 Compra simulada - Gracias ${nombreUsuario} por tu compra de $${calcularTotal()}`);
+            mostrarNotificacion(`🛑 Compra simulada - Gracias ${nombreUsuario} por tu compra de $${calcularTotal()} MXN`);
             carrito = []; guardarCarrito(); actualizarCarrito(); mostrarSeccion('inicio');
         }
 
@@ -489,7 +496,7 @@
             const f = productos.filter(p => p.nombre.toLowerCase().includes(filtro.toLowerCase()));
             if (f.length === 0) { container.innerHTML = '<p style="text-align:center">No hay productos</p>'; return; }
             let html = '';
-            f.forEach(p => { html += `<div class="producto"><img class="producto-imagen" src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/300x250?text=Imagen+no+disponible'"><div class="producto-info"><div class="producto-nombre">${p.nombre}</div><div class="producto-precio">$${p.precio}</div><div class="cantidad-selector"><label>Cantidad:</label><input type="number" id="cant-${p.id}" value="1" min="1"></div><button class="btn-agregar" onclick="agregarAlCarrito(${p.id}, parseInt(document.getElementById('cant-${p.id}').value))">🛒 Agregar</button></div></div>`; });
+            f.forEach(p => { html += `<div class="producto"><img class="producto-imagen" src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/300x250?text=Imagen+no+disponible'"><div class="producto-info"><div class="producto-nombre">${p.nombre}</div><div class="producto-precio">${p.precio}</div><div class="cantidad-selector"><label>Cantidad:</label><input type="number" id="cant-${p.id}" value="1" min="1"></div><button class="btn-agregar" onclick="agregarAlCarrito(${p.id}, parseInt(document.getElementById('cant-${p.id}').value))">🛒 Agregar</button></div></div>`; });
             container.innerHTML = html;
         }
 
