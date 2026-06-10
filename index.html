@@ -100,6 +100,40 @@
             margin-bottom: 15px;
         }
 
+        .mision-vision {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card-mv {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card-mv:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-mv h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-left: 5px solid #4caf50;
+            padding-left: 15px;
+        }
+
+        .card-mv p {
+            color: #333;
+            line-height: 1.5;
+        }
+
         .search-bar {
             margin-bottom: 30px;
             text-align: center;
@@ -305,6 +339,28 @@
             margin-top: 50px;
         }
 
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icons svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
         .oculto {
             display: none;
         }
@@ -330,6 +386,17 @@
                 <h1>♻️ Recycling Dreams</h1>
                 <p>Productos ecológicos hechos con amor por el planeta</p>
                 <p style="margin-top: 15px;">🌱 Tu compra ayuda al medio ambiente 🌱</p>
+            </div>
+            
+            <div class="mision-vision">
+                <div class="card-mv">
+                    <h3>🎯 Misión</h3>
+                    <p>Buscamos transformar materiales reciclados en piezas de diseño únicas como lámparas y macetas, fomentando una cultura de conciencia ambiental donde cada persona pueda dar esencia a su espacio mientras protegemos nuestros océanos y recursos naturales.</p>
+                </div>
+                <div class="card-mv">
+                    <h3>🌟 Visión</h3>
+                    <p>Ser la marca líder en diseño sustentable, logrando que nuestra generación reduzca el desperdicio de plástico y vidrio mediante la creación de productos artesanales que demuestren que el reciclaje y la estética pueden ir de la mano.</p>
+                </div>
             </div>
         </section>
 
@@ -397,6 +464,20 @@
     </div>
 
     <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/recycling_dr3ams?igsh=MWF0MGVxZWx2dHZvNw==" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.332.014 7.052.072 5.197.158 3.556.587 2.178 1.966.799 3.344.37 4.985.284 6.84.226 8.12.212 8.529.212 11.788s.014 3.668.072 4.948c.086 1.855.515 3.496 1.894 4.874 1.378 1.379 3.019 1.808 4.874 1.894 1.28.058 1.689.072 4.948.072s3.668-.014 4.948-.072c1.855-.086 3.496-.515 4.874-1.894 1.379-1.378 1.808-3.019 1.894-4.874.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.086-1.855-.515-3.496-1.894-4.874C20.444.587 18.803.158 16.948.072 15.668.014 15.259 0 12 0z"/>
+                    <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8z"/>
+                    <circle cx="18.406" cy="5.594" r="1.44"/>
+                </svg>
+            </a>
+            <a href="https://www.tiktok.com/@recycling.dreams?_r=1&_t=ZS-9761szHqg2J" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 19.5 10.5v4.5c0 3.5-2.5 5.5-5.5 5.5s-5.5-2-5.5-5.5v-4.5c0-3.5 2.5-5.5 5.5-5.5.5 0 1 0 1.5.1v2.5c-.5-.1-1-.2-1.5-.2-1.5 0-2.5 1-2.5 2.5v4.5c0 1.5 1 2.5 2.5 2.5s2.5-1 2.5-2.5v-9h2.5c.2 1.2.8 2.2 1.7 2.9z"/>
+                </svg>
+            </a>
+        </div>
         <p>♻️ Recycling Dreams - Cuidando el planeta, un producto a la vez ♻️</p>
         <p>© 2026 - Proyecto Escolar</p>
     </footer>
@@ -477,32 +558,4 @@
 
         function iniciarSesion() {
             const e = document.getElementById('login-email').value, p = document.getElementById('login-pass').value;
-            if (e && p) { usuarioLogueado = true; nombreUsuario = e.split('@')[0]; document.getElementById('usuario-nombre').innerText = nombreUsuario; document.getElementById('form-login').classList.add('oculto'); document.getElementById('usuario-login').classList.remove('oculto'); mostrarNotificacion(`✅ Bienvenido ${nombreUsuario}`); }
-            else mostrarNotificacion("⚠️ Completa los campos");
-        }
-
-        function registrar() {
-            const n = document.getElementById('reg-nombre').value, e = document.getElementById('reg-email').value, p = document.getElementById('reg-pass').value;
-            if (n && e && p) { usuarioLogueado = true; nombreUsuario = n; document.getElementById('usuario-nombre').innerText = nombreUsuario; document.getElementById('form-registro').classList.add('oculto'); document.getElementById('form-login').classList.add('oculto'); document.getElementById('usuario-login').classList.remove('oculto'); mostrarNotificacion(`✅ Cuenta creada. Bienvenido ${nombreUsuario}`); }
-            else mostrarNotificacion("⚠️ Completa los campos");
-        }
-
-        function cerrarSesion() { usuarioLogueado = false; nombreUsuario = ""; document.getElementById('form-login').classList.remove('oculto'); document.getElementById('usuario-login').classList.add('oculto'); document.getElementById('form-registro').classList.add('oculto'); mostrarNotificacion("🔓 Sesión cerrada"); }
-        function mostrarRegistro() { document.getElementById('form-login').classList.add('oculto'); document.getElementById('form-registro').classList.remove('oculto'); }
-        function ocultarRegistro() { document.getElementById('form-registro').classList.add('oculto'); document.getElementById('form-login').classList.remove('oculto'); }
-
-        function mostrarProductos(filtro = '') {
-            const container = document.getElementById('productos-container');
-            const f = productos.filter(p => p.nombre.toLowerCase().includes(filtro.toLowerCase()));
-            if (f.length === 0) { container.innerHTML = '<p style="text-align:center">No hay productos</p>'; return; }
-            let html = '';
-            f.forEach(p => { html += `<div class="producto"><img class="producto-imagen" src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/300x250?text=Imagen+no+disponible'"><div class="producto-info"><div class="producto-nombre">${p.nombre}</div><div class="producto-precio">${p.precio}</div><div class="cantidad-selector"><label>Cantidad:</label><input type="number" id="cant-${p.id}" value="1" min="1"></div><button class="btn-agregar" onclick="agregarAlCarrito(${p.id}, parseInt(document.getElementById('cant-${p.id}').value))">🛒 Agregar</button></div></div>`; });
-            container.innerHTML = html;
-        }
-
-        document.getElementById('buscador').addEventListener('input', (e) => mostrarProductos(e.target.value));
-        document.addEventListener('DOMContentLoaded', () => { const tp = document.getElementById('tipo-pago'); if (tp) { tp.addEventListener('change', (e) => { document.getElementById('datos-tarjeta').classList.add('oculto'); document.getElementById('datos-transferencia').classList.add('oculto'); document.getElementById('datos-paypal').classList.add('oculto'); if (e.target.value === 'tarjeta') document.getElementById('datos-tarjeta').classList.remove('oculto'); if (e.target.value === 'transferencia') document.getElementById('datos-transferencia').classList.remove('oculto'); if (e.target.value === 'paypal') document.getElementById('datos-paypal').classList.remove('oculto'); }); } });
-        cargarCarrito(); mostrarSeccion('inicio');
-    </script>
-</body>
-</html>
+            if (e && p) { usuarioLogueado = t
